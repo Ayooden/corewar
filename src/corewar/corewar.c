@@ -56,7 +56,6 @@ t_broker		*ft_create_thread(t_broker *broker, t_game *game)
 	if (broker->vis_on && (win = ft_init_window(game)))
 	{
 		broker->fps = DEFAULT_DELAY;
-		game->input->quiet = true;
 		ft_loop((void *)win);
 	}
 	else if (broker->vis_on)

@@ -15,14 +15,16 @@
 int	ft_key_press(int key, void *param)
 {
 	t_window	*win;
+	int32_t		delay;
 
 	win = (t_window *)param;
+	delay = *(win->game->fps) / 5;
 	if (key == PLUS)
-		if (*(win->game->fps) > DELAY_STEP)
-			*(win->game->fps) -= DELAY_STEP;
+		if (*(win->game->fps) > delay)
+			*(win->game->fps) -= delay;
 	if (key == MINUS)
-		if (*(win->game->fps) < MAX_DELAY)
-			*(win->game->fps) += DELAY_STEP;
+		if (*(win->game->fps) + delay < MAX_DELAY)
+			*(win->game->fps) += delay;
 	if (key == ESCAPE)
 		ft_close_window((void *)win);
 	return (0);

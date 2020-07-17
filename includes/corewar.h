@@ -207,7 +207,7 @@ static t_opt	g_opt_tab[10] = {
 		"available number in the order of\n                    the parameters. "
 		"The last player will have the first process\n                    in "
 		"the order of execution."},
-	{2, "-q", &ft_flag_q, 0, "", "Disable the display of each actual execution "
+	{2, "-q", &ft_flag_q, 0, "", "Enable the display of each actual execution "
 		"of the \"live\"\n                    instruction"},
 	{3, "-dump", &ft_flag_dump, 2, "[nbr_cycles]", "At the end of <nbr_cycles> "
 		"of executions, dump the memory\n                    on the standard "

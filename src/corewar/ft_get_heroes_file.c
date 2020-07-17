@@ -18,7 +18,7 @@
 **	0x726f632e == "./cor"
 */
 
-t_err		ft_check_file_name(char *file_name)
+t_err			ft_check_file_name(char *file_name)
 {
 	size_t	len;
 
@@ -30,7 +30,22 @@ t_err		ft_check_file_name(char *file_name)
 	return (w_format);
 }
 
-t_err		ft_fill_hero_list(int argc, char **argv, t_data *data)
+static t_err	ft_fill(t_data *data, char **argv, int i, int *j)
+{
+	*j = -1;
+	while (++(*j) < MAX_PLAYERS)
+		if (data->hero_list[*j].id == 0)
+		{
+			data->hero_list[*j].id = *j + 1;
+			data->hero_list[*j].file_name = argv[i];
+			break ;
+		}
+	if (*j == MAX_PLAYERS)
+		return (w_player_number);
+	return (success);
+}
+
+static t_err	ft_fill_hero_list(int argc, char **argv, t_data *data)
 {
 	int		i;
 	int		j;
@@ -38,28 +53,22 @@ t_err		ft_fill_hero_list(int argc, char **argv, t_data *data)
 
 	err = success;
 	i = 0;
+	j = -1;
 	while (++i < argc)
 	{
 		if (!ft_strcmp(argv[i], "-n"))
 			i += 2;
-		else if ((err = ft_check_file_name(argv[i])))
-		{
-			j = -1;
-			while (++j < MAX_PLAYERS)
-				if (data->hero_list[j].id == 0)
-				{
-					data->hero_list[j].id = j + 1;
-					data->hero_list[j].file_name = argv[i];
-					break ;
-				}
-			if (j == MAX_PLAYERS)
-				return (w_player_number);
-		}
+		else if (!(ft_check_file_name(argv[i])))
+			err = ft_fill(data, argv, i, &j);
+		if (err)
+			break ;
 	}
+	if (!err && j == -1)
+		err = w_flag;
 	return (err);
 }
 
-t_err		ft_get_heroes_files(int argc, char **argv, t_data *data)
+t_err			ft_get_heroes_files(int argc, char **argv, t_data *data)
 {
 	int	i;
 	int	index;

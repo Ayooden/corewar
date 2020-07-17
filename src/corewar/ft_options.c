@@ -34,7 +34,7 @@ t_err	ft_flag_dump(int32_t argc, int32_t *current, char **argv, t_data *data)
 
 t_err	ft_flag_q(int32_t argc, int32_t *current, char **argv, t_data *data)
 {
-	data->quiet = true;
+	data->quiet = false;
 	return (success);
 }
 

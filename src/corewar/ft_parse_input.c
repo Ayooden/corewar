@@ -28,6 +28,7 @@ static void		ft_init_data(t_data *data)
 	ft_bzero(data, sizeof(*data));
 	data->dump = -1;
 	data->vis_on = false;
+	data->quiet = true;
 }
 
 t_err			ft_parse_input(int argc, char **argv, t_data **data)
