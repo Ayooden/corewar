@@ -21,6 +21,8 @@
 # define WINDOW_TITLE "Corewar"
 # define ESCAPE 53
 # define PLUS	24
+# define NUMLOCK_PLUS 69
+# define NUMLOCK_MINUS 78
 # define MINUS 27
 
 # define WINDOW_LOGO "VIRTUAL MACHINE v1.4"
@@ -66,7 +68,6 @@
 
 # define DEFAULT_DELAY 4000
 # define MAX_DELAY 1000000
-# define DELAY_STEP	2000
 
 typedef struct		s_point
 {
@@ -129,5 +130,7 @@ int					ft_check_color(int color);
 void				ft_check_lifes(t_window *win);
 void				ft_draw_game_field(t_window *win, t_point start);
 int					ft_mouse_hook(int button, int x, int y, void *win_ptr);
+int					ft_mouse_motion(int x, int y, void *ptr);
+void				ft_draw_button(t_window *win, int color);
 
 #endif

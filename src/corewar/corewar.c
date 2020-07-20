@@ -44,6 +44,7 @@ static void		*ft_loop(void *winptr)
 	mlx_key_hook(win->win, ft_key_press, (void *)win);
 	mlx_mouse_hook(win->win, ft_mouse_hook, (void *)win);
 	mlx_hook(win->win, 17, 0, ft_close_window, (void *)win);
+	mlx_hook(win->win, 6, 0, ft_mouse_motion, (void *)win);
 	mlx_loop(win->mlx);
 	return (NULL);
 }
@@ -113,6 +114,7 @@ int				main(int argc, char **argv)
 				ft_print_error(broker->error);
 			if (!data->vis_on)
 				pthread_join(broker->game, NULL);
+			ft_memdel((void **)&broker);
 		}
 	}
 	else

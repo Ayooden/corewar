@@ -41,20 +41,25 @@ static void	ft_draw_players(t_window *win, t_point begin, t_point end, int i)
 	ft_draw_champion(win, begin, color, i);
 }
 
-static void	ft_draw_first_greeting(t_window *win)
+void		ft_draw_button(t_window *win, int color)
 {
 	t_point	begin;
 	t_point	param;
 
+	begin = ft_rewrite_point(BUTTON_X, BUTTON_Y, color);
+	param = ft_rewrite_point(BUTTON_WIDTH, BUTTON_HEIGHT, color);
+	ft_draw_rectangle(win, begin, param);
+	mlx_string_put(win->mlx, win->win, BUTTON_X + 85, BUTTON_Y + 18, \
+	color, "S T A R T");
+}
+
+static void	ft_draw_first_greeting(t_window *win)
+{
 	mlx_string_put(win->mlx, win->win, FIELD_X + 35, FIELD_Y + 35, \
 	C_CYAN, "Welcome to the Corewar Virtual machine!");
 	mlx_string_put(win->mlx, win->win, FIELD_X + 35, FIELD_Y + 65, \
 	C_CYAN, "Click \"START\" to begin game");
-	begin = ft_rewrite_point(BUTTON_X, BUTTON_Y, C_WHITE);
-	param = ft_rewrite_point(BUTTON_WIDTH, BUTTON_HEIGHT, C_WHITE);
-	ft_draw_rectangle(win, begin, param);
-	mlx_string_put(win->mlx, win->win, BUTTON_X + 85, BUTTON_Y + 18, \
-	C_WHITE, "S T A R T");
+	ft_draw_button(win, C_WHITE);
 }
 
 static void	ft_draw_grid_2(t_window *win)

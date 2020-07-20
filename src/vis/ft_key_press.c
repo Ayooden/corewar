@@ -19,10 +19,10 @@ int	ft_key_press(int key, void *param)
 
 	win = (t_window *)param;
 	delay = *(win->game->fps) / 5;
-	if (key == PLUS)
+	if (key == PLUS || key == NUMLOCK_PLUS)
 		if (*(win->game->fps) > delay)
 			*(win->game->fps) -= delay;
-	if (key == MINUS)
+	if (key == MINUS || key == NUMLOCK_MINUS)
 		if (*(win->game->fps) + delay < MAX_DELAY)
 			*(win->game->fps) += delay;
 	if (key == ESCAPE)
@@ -50,5 +50,19 @@ int	ft_mouse_hook(int button, int x, int y, void *win_ptr)
 		pthread_cond_signal(win->game->cv);
 		pthread_mutex_unlock(win->game->mutex);
 	}
+	return (0);
+}
+
+int	ft_mouse_motion(int x, int y, void *ptr)
+{
+	t_window	*win;
+
+	win = (t_window *)ptr;
+	if (*(win->game->start) == false && \
+		(x >= BUTTON_X && x <= BUTTON_X + BUTTON_WIDTH) && \
+		(y >= BUTTON_Y && y <= BUTTON_Y + BUTTON_HEIGHT))
+		ft_draw_button(win, C_CYAN);
+	else if (*(win->game->start) == false)
+		ft_draw_button(win, C_WHITE);
 	return (0);
 }

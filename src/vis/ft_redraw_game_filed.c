@@ -92,6 +92,11 @@ static void	ft_rewrite_info(t_window *win, t_point *begin, t_point *param)
 	begin->y += 60;
 	ft_fill_rectangle(win, *begin, *param);
 	ft_write_string(win, *begin, win->game->cursors_count);
+	begin->y += 60;
+	ft_fill_rectangle(win, *begin, *param);
+	ft_write_string(win, *begin,
+					((int)(MAX_DELAY) / 1000 - \
+			(int)*(win->game->fps) / 1000));
 }
 
 int			ft_redraw_game_field(t_window *win)

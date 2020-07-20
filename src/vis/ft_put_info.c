@@ -64,21 +64,20 @@ void		ft_put_info(t_window *win, t_point begin)
 	start.x = begin.x + 15;
 	ft_put_next_string(win, start, "Cycle", win->game->cycle);
 	start.y += 60;
-	start.x = begin.x + 15;
 	ft_put_next_string(win, start, "Doomsdays", win->game->doomsday_count);
 	start.y += 60;
-	start.x = begin.x + 15;
 	ft_put_next_string(win, start, "Total cycles", win->game->total_cycles);
 	start.y += 60;
-	start.x = begin.x + 15;
 	ft_put_next_string(win, start, "Cycles to die", win->game->cycles_to_die);
 	start.y += 60;
-	start.x = begin.x + 15;
 	ft_put_next_string(win, start, "Carry's count", win->game->cursors_count);
-	start.y += 130;
-	start.x = begin.x + 15;
+	start.y += 60;
+	ft_put_next_string(win, start, "Speed",
+		((int)(MAX_DELAY) / 1000 - \
+			(int)DEFAULT_DELAY / 1000));
+	start.y += 90;
 	ft_put_controls_info(win, begin, start);
-	start.y += 80;
+	start.y += 70;
 	start.x = begin.x + 30;
 	ft_put_hint(win, begin, start);
 }
