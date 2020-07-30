@@ -74,4 +74,3 @@ echo "" > ${ERRORS_REPORT}
 run_all_tests
 
 rm $TEST_TMP
-#rm $DEMO_OUTPUT
