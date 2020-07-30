@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
 #include "vis.h"
 #include "corewar_op.h"
 #include <unistd.h>

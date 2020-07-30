@@ -27,7 +27,8 @@ t_err	op_live(t_game *game)
 		game->input->hero_list[-arg - 1].id == -arg)
 	{
 		game->winner = game->input->hero_list - arg - 1;
-		ft_set_color(white - arg);
+		if (!game->input->quiet)
+			ft_set_color(white - arg);
 		cursor->color = white - arg + 5;
 		game->color[cursor->pc % MEM_SIZE] = cursor->color + 5;
 		game->lives_count[-arg - 1]++;
