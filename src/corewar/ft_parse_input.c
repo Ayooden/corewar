@@ -31,6 +31,12 @@ static void		ft_init_data(t_data *data)
 	data->quiet = true;
 }
 
+static t_err	ft_return_err(t_data **data, t_err err)
+{
+	ft_memdel((void **)data);
+	return (err);
+}
+
 t_err			ft_parse_input(int argc, char **argv, t_data **data)
 {
 	t_err	err;
@@ -39,10 +45,10 @@ t_err			ft_parse_input(int argc, char **argv, t_data **data)
 		return (no_memory);
 	ft_init_data(*data);
 	if ((err = ft_check_opt(argc, argv, *data)))
-		return (err);
+		return (ft_return_err(data, err));
 	if ((err = ft_get_heroes_files(argc, argv, *data)))
-		return (err);
+		return (ft_return_err(data, err));
 	if ((err = ft_get_heroes(*data)))
-		return (err);
+		return (ft_return_err(data, err));
 	return (success);
 }

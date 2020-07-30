@@ -110,7 +110,7 @@ int			ft_redraw_game_field(t_window *win)
 		begin = ft_rewrite_point(FIELD_X + 15, FIELD_Y + 15, C_BLACK);
 		ft_draw_game_field(win, begin);
 	}
-	else if (win->end == false && *(win->game->start))
+	else if (win->end == false && *(win->game->start) && win->game->winner)
 		ft_write_result(win);
 	return (0);
 }

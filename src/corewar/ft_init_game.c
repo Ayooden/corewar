@@ -49,5 +49,6 @@ t_game			*ft_init_game(t_broker *broker)
 	temp = MAX_PLAYERS;
 	while (temp--)
 		game->lives_count[temp] = 0;
+	game->head = NULL;
 	return (ft_write_in_game_struct(broker, game));
 }

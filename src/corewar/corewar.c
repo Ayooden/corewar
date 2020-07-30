@@ -23,9 +23,7 @@ static void		*ft_game(void *gameptr)
 	game = (t_game *)gameptr;
 	pthread_mutex_lock(game->mutex);
 	while (*(game->start) != true)
-	{
 		pthread_cond_wait(game->cv, game->mutex);
-	}
 	pthread_mutex_unlock(game->mutex);
 	if (ft_battle(game))
 		ft_print_arena(game);
@@ -84,6 +82,7 @@ t_broker		*ft_init_broker(t_data *data)
 	broker->game_start = false;
 	broker->error = success;
 	broker->fps = 0;
+	broker->game_ptr = NULL;
 	pthread_mutex_init(&(broker->mutex), NULL);
 	pthread_cond_init(&(broker->game_cv), NULL);
 	if (!(game = ft_init_game(broker)))
@@ -91,6 +90,7 @@ t_broker		*ft_init_broker(t_data *data)
 		broker->error = no_memory;
 		return (broker);
 	}
+	broker->game_ptr = game;
 	ft_past_heroes(game, data);
 	if ((broker->error = ft_init_cursors(game)))
 		return (broker);
@@ -112,8 +112,12 @@ int				main(int argc, char **argv)
 			broker = ft_init_broker(data);
 			if (broker->error)
 				ft_print_error(broker->error);
-			if (!data->vis_on)
+			if (!broker->vis_on && !broker->error)
+			{
 				pthread_join(broker->game, NULL);
+				ft_game_over(&(broker->game_ptr));
+			}
+			ft_memdel((void **)&data);
 			ft_memdel((void **)&broker);
 		}
 	}

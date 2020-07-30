@@ -17,7 +17,7 @@
 static void	ft_print_error_2(int fd, t_err err)
 {
 	if (err == dup_id)
-		ft_printf_fd(fd, "Duplicate player id\n");
+		ft_printf_fd(fd, "Duplicate or wrong player id\n");
 	else if (err == no_file)
 		ft_printf_fd(fd, "File not found\n");
 	else if (err == w_file_read)

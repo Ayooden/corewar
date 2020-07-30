@@ -78,7 +78,9 @@ t_err			ft_get_heroes_files(int argc, char **argv, t_data *data)
 	{
 		if (!ft_strcmp(argv[i], "-n"))
 		{
-			index = ft_atoi(argv[++i]);
+			if (!argv[++i])
+				return (dup_id);
+			index = ft_atoi(argv[i]);
 			if (data->hero_list[index - 1].id)
 				return (dup_id);
 			data->hero_list[index - 1].id = index;

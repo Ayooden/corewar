@@ -122,7 +122,6 @@ clean:
 				rm -f $(COREWAR_OBJ)
 				make clean -C $(LIBFTDIR)/
 				make clean -C $(PRINTFDIR)/
-				make clean -C $(MLXDIR)/
 
 fclean:				
 				rm -f $(VIS_OBJ)

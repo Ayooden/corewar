@@ -74,7 +74,7 @@ typedef enum			e_err
 	w_file_size,
 	except_magic,
 	exceed_size,
-	wrong_psize
+	wrong_psize,
 }						t_err;
 
 typedef enum			e_bool
@@ -161,6 +161,7 @@ typedef struct			s_broker
 	pthread_t			game;
 	pthread_cond_t		game_cv;
 	pthread_mutex_t		mutex;
+	t_game				*game_ptr;
 	t_bool				vis_on;
 	t_bool				game_start;
 	clock_t				fps;
@@ -179,7 +180,8 @@ union					u_types
 	unsigned char		value;
 };
 
-typedef struct			s_opt{
+typedef struct			s_opt
+{
 	uint8_t				id;
 	char				name[10];
 	t_err				(*f)();
