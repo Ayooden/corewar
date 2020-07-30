@@ -38,7 +38,7 @@ static int	ft_welcome_heroes(t_data *data)
 		++i;
 	}
 	if (!(data->vis_on))
-		ft_printf(RESET"\n");
+		ft_printf(RESET);
 	return (count);
 }
 

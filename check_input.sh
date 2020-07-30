@@ -6,13 +6,11 @@ YELLOW="\x1b[33m"
 RESET="\x1b[0m"
 
 COREWAR_EXEC=$1
-#DEMO_COREWAR_EXEC=./checkers/demo_corewar
 
 CHAMPS_DIR=checkers/valid_champs
-DIFF_DIR=checkers/diff_files/
+DIFF_DIR=checkers/diff_files
 
 TEST_TMP=test_temp_my
-#DEMO_OUTPUT=test_temp_demo
 
 ERRORS_REPORT=checkers/check_inputs_report.txt
 
@@ -33,14 +31,12 @@ print_warning()
 
 run_all_tests()
 {
-  for file in `find ${CHAMPS_DIR} -type f -name "*.cor"`
+  for file in `find ${DIFF_DIR} -type f -name "*.txt"`
   do
     local name=`echo ${file%%.*} | cut -d'/' -f3`
-    ${COREWAR_EXEC} ${file} > ${TEST_TMP}
-   # ${DEMO_COREWAR_EXEC} ${file} > /dev/null 2> ${DEMO_OUTPUT}
-   # ${DEMO_COREWAR_EXEC} ${file} > checkers/diff_files/${name}.txt
-    local output=`diff -ibB ${TEST_TMP} ${DIFF_DIR}${name}.txt`
-    printf "%-65s" "$file"
+    ${COREWAR_EXEC} ${CHAMPS_DIR}/${name}.cor > ${TEST_TMP}
+    local output=`diff -ibB ${TEST_TMP} ${file}`
+    printf "%-65s" "${name}.cor"
     printf ": "
     if [ "$output" = "" ]; then
       print_ok "Good!"
