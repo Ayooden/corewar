@@ -55,11 +55,17 @@ static void	ft_write_result(t_window *win)
 	ft_fill_rectangle(win, begin, param);
 	mlx_string_put(win->mlx, win->win, begin.x + 20, \
 	begin.y + 20, C_CYAN, "The game is over!");
-	mlx_string_put(win->mlx, win->win, begin.x + 20, \
+	if (win->game->winner)
+	{
+		mlx_string_put(win->mlx, win->win, begin.x + 20, \
 	begin.y + 60, C_CYAN, "The winner is:");
-	ft_write_winner(win, begin);
-	mlx_string_put(win->mlx, win->win, begin.x + 20, \
+		ft_write_winner(win, begin);
+		mlx_string_put(win->mlx, win->win, begin.x + 20, \
 	begin.y + 110, C_CYAN, "Comment:");
+	}
+	else
+		mlx_string_put(win->mlx, win->win, begin.x + 20, \
+	begin.y + 60, C_CYAN, "No winner :(");
 }
 
 static void	ft_write_string(t_window *win, t_point begin, int nbr)
@@ -110,7 +116,7 @@ int			ft_redraw_game_field(t_window *win)
 		begin = ft_rewrite_point(FIELD_X + 15, FIELD_Y + 15, C_BLACK);
 		ft_draw_game_field(win, begin);
 	}
-	else if (win->end == false && *(win->game->start) && win->game->winner)
+	else if (win->end == false && *(win->game->start))
 		ft_write_result(win);
 	return (0);
 }

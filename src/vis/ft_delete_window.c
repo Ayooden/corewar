@@ -22,7 +22,5 @@ void	ft_delete_window(t_window **window)
 	if ((*window)->mlx)
 		free((*window)->mlx);
 	free((*window)->colors);
-	if ((*window)->game)
-		ft_game_over(&(*window)->game);
 	free(*window);
 }
